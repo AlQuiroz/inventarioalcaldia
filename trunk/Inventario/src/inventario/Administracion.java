@@ -33,7 +33,7 @@ public class Administracion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnInventario = new javax.swing.JButton();
         btnOficinas = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         jButton2.setText("jButton2");
 
@@ -44,22 +44,12 @@ public class Administracion extends javax.swing.JFrame {
 
         btnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/inventario.png"))); // NOI18N
         btnInventario.setText("Inventario");
-        btnInventario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInventarioActionPerformed(evt);
-            }
-        });
 
         btnOficinas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/oficinas.png"))); // NOI18N
         btnOficinas.setText("Oficinas");
-        btnOficinas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOficinasActionPerformed(evt);
-            }
-        });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/salir.png"))); // NOI18N
-        jButton1.setText("Salir");
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/salir.png"))); // NOI18N
+        btnSalir.setText("Salir");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -67,22 +57,22 @@ public class Administracion extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnOficinas, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInventario))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnInventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnOficinas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(41, 41, 41)
                 .addComponent(btnInventario)
-                .addGap(27, 27, 27)
+                .addGap(30, 30, 30)
                 .addComponent(btnOficinas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(60, 60, 60))
+                .addGap(33, 33, 33)
+                .addComponent(btnSalir)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -104,18 +94,6 @@ public class Administracion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
-        this.setVisible(false);
-        InvEquipos invEquipos = new InvEquipos();
-        invEquipos.setVisible(true);
-    }//GEN-LAST:event_btnInventarioActionPerformed
-
-    private void btnOficinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOficinasActionPerformed
-        this.setVisible(false);
-        oficinas oficinas = new oficinas();
-        oficinas.setVisible(true);
-    }//GEN-LAST:event_btnOficinasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,7 +132,7 @@ public class Administracion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInventario;
     private javax.swing.JButton btnOficinas;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
