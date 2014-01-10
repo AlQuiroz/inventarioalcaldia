@@ -66,13 +66,13 @@ public class Administracion extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(58, 58, 58)
                 .addComponent(btnInventario)
-                .addGap(30, 30, 30)
+                .addGap(39, 39, 39)
                 .addComponent(btnOficinas)
-                .addGap(33, 33, 33)
+                .addGap(35, 35, 35)
                 .addComponent(btnSalir)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
