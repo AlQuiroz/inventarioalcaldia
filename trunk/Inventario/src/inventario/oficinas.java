@@ -94,6 +94,7 @@ public class oficinas extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Seleccion de oficina");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Bienvenido. Seleccione la oficina"));
 
@@ -182,25 +183,15 @@ public class oficinas extends javax.swing.JFrame {
     }//GEN-LAST:event_comboOficinasActionPerformed
 
     private void botonGenerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarPDFActionPerformed
-        Connection conexion = null;
         try {
-            try {
-                Class.forName("org.postgresql.Driver");
-                conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/inventario", "postgres", "r00t");
-            } catch (ClassNotFoundException ex) {
-                ex.printStackTrace();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            
-            
             File file = new File("reporte.jasper");
             Map<String, Object> mapa = new HashMap<>();
-            mapa.put("nombre", "Carlos");
+            mapa.put("oficina", idoficina);
             JasperReport reporte = (JasperReport) JRLoader.loadObject(file);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, null, new JREmptyDataSource());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, mapa, Conexion.Conectarse());
             JasperViewer visor = new JasperViewer(jasperPrint);
-            JOptionPane.showConfirmDialog(rootPane, visor);
+//            JOptionPane.showMessageDialog(rootPane, visor);
+            visor.setVisible(true);
         } catch (HeadlessException | JRException ex) {
             JOptionPane.showMessageDialog(rootPane, "Ha ocurrido una excepcion creando el reporte","Error",JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
