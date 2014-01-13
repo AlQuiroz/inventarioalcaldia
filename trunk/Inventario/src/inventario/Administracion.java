@@ -47,6 +47,11 @@ public class Administracion extends javax.swing.JFrame {
 
         btnOficinas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/oficinas.png"))); // NOI18N
         btnOficinas.setText("Oficinas");
+        btnOficinas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOficinasActionPerformed(evt);
+            }
+        });
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/salir.png"))); // NOI18N
         btnSalir.setText("Salir");
@@ -94,6 +99,11 @@ public class Administracion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnOficinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOficinasActionPerformed
+        Oficinas ofi = new Oficinas();
+        ofi.setVisible(true);
+    }//GEN-LAST:event_btnOficinasActionPerformed
 
     /**
      * @param args the command line arguments
