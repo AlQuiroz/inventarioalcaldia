@@ -3,6 +3,8 @@ package inventario;
 import bd.Conexion;
 import java.awt.Dialog;
 import java.awt.HeadlessException;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
@@ -188,10 +191,15 @@ public class Oficinas extends javax.swing.JFrame {
             mapa.put("oficina", idoficina);
             JasperReport reporte = (JasperReport) JRLoader.loadObject(file);
             JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, mapa, Conexion.Conectarse());
-            JasperViewer visor = new JasperViewer(jasperPrint);
-            visor.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-            visor.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            JasperViewer visor = new JasperViewer(jasperPrint, false);
+            visor.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    botonGenerarPDF.setEnabled(true);
+                }
+            });
             visor.setVisible(true);
+            botonGenerarPDF.setEnabled(false);
         } catch (HeadlessException | JRException ex) {
             JOptionPane.showMessageDialog(rootPane, "Ha ocurrido una excepcion creando el reporte","Error",JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
