@@ -1,6 +1,7 @@
 package inventario;
 
 import bd.Conexion;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -38,6 +39,12 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Usuario:");
 
         jLabel3.setText("Clave:");
+
+        txtClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtClaveKeyPressed(evt);
+            }
+        });
 
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +119,12 @@ public class Login extends javax.swing.JFrame {
         nu.setVisible(true);
     }//GEN-LAST:event_btnCreateActionPerformed
 
+    private void txtClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+            autenticarUsuario();
+        }
+    }//GEN-LAST:event_txtClaveKeyPressed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -170,6 +183,7 @@ public class Login extends javax.swing.JFrame {
                 
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Usuario no encontrado","Error",JOptionPane.ERROR_MESSAGE);
+                txtUsuario.requestFocus();
             }
             
         } catch (Exception e) {
