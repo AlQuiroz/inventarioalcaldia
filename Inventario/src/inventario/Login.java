@@ -103,28 +103,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        String clave = new String(txtClave.getPassword());
-        try {
-            Statement stmt = Conexion.Conectarse().createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE usuario = '"+txtUsuario.getText()+"'");
-            if (rs.next()) {
-                if (rs.getString("clave").equals(clave)) {
-                    JOptionPane.showMessageDialog(rootPane, "Bienvenido al sistema "+rs.getString("nombres"));
-                    this.setVisible(false);
-                    Administracion administracion = new Administracion();
-                    administracion.setVisible(true);
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Clave incorrecta","Error",JOptionPane.WARNING_MESSAGE);
-                }
-                
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Usuario no encontrado","Error",JOptionPane.ERROR_MESSAGE);
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
+        autenticarUsuario();
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
@@ -173,4 +152,28 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtClave;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void autenticarUsuario() {
+        String clave = new String(txtClave.getPassword());
+        try {
+            Statement stmt = Conexion.Conectarse().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE usuario = '"+txtUsuario.getText()+"'");
+            if (rs.next()) {
+                if (rs.getString("clave").equals(clave)) {
+                    JOptionPane.showMessageDialog(rootPane, "Bienvenido al sistema "+rs.getString("nombres"));
+                    this.setVisible(false);
+                    Administracion administracion = new Administracion();
+                    administracion.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Clave incorrecta","Error",JOptionPane.WARNING_MESSAGE);
+                }
+                
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Usuario no encontrado","Error",JOptionPane.ERROR_MESSAGE);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

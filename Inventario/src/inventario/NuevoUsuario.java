@@ -157,7 +157,6 @@ public class NuevoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        
         String usuario = txtNewuser.getText();
         String clave = new String(txtClave.getPassword());
         String nombres = txtNombre.getText() +" "+ txtApellido.getText();
@@ -166,6 +165,8 @@ public class NuevoUsuario extends javax.swing.JFrame {
             int rs = stmt.executeUpdate("INSERT INTO usuario (usuario,clave,nombres) VALUES ('"+usuario+"','"+clave+"','"+nombres+"')");
             if (rs > 0) {
                 JOptionPane.showMessageDialog(rootPane, "Se ha insertado correctamente el usuario");
+                this.setVisible(false);
+                new Login().setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(rootPane, "No se ha insertado correctamente el usuario","Error",JOptionPane.WARNING_MESSAGE);
             }
