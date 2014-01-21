@@ -610,7 +610,7 @@ public class InvEquipos extends javax.swing.JFrame {
             defaultTableModel = new DefaultTableModel(null, getColumnas());
             tablaEmpleado.setModel(defaultTableModel);
             Statement stmt = Conexion.Conectarse().createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT e.nombre,e.cargo,o.nombre from empleado e, oficinas o WHERE e.id = o.id");
+            ResultSet rs = stmt.executeQuery("SELECT e.nombre,e.cargo,o.nombre from empleado e, oficinas o WHERE e.oficina = o.id");
             while (rs.next()) {
                 for (int i = 0; i < 3; i++) {
                     datos[i] = rs.getObject(i + 1);
