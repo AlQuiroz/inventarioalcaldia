@@ -40,7 +40,7 @@ public class InvEquipos extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         txtNombres = new javax.swing.JTextField();
         txtApellidos = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaEmpleado = new javax.swing.JTable();
         btnEliminar = new javax.swing.JButton();
@@ -66,7 +66,7 @@ public class InvEquipos extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         comboEmpleado = new javax.swing.JComboBox();
         labelIdEmpleado = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnNempleado = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -92,11 +92,11 @@ public class InvEquipos extends javax.swing.JFrame {
 
         jLabel14.setText("Apellidos:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/diskette.png"))); // NOI18N
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/diskette.png"))); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
@@ -117,8 +117,10 @@ public class InvEquipos extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tablaEmpleado);
-        tablaEmpleado.getColumnModel().getColumn(0).setResizable(false);
-        tablaEmpleado.getColumnModel().getColumn(1).setResizable(false);
+        if (tablaEmpleado.getColumnModel().getColumnCount() > 0) {
+            tablaEmpleado.getColumnModel().getColumn(0).setResizable(false);
+            tablaEmpleado.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/Letter-X-icon.png"))); // NOI18N
         btnEliminar.setText("Eliminar Empleado");
@@ -147,7 +149,7 @@ public class InvEquipos extends javax.swing.JFrame {
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtCargo)
                                 .addComponent(txtNombres)
@@ -192,7 +194,7 @@ public class InvEquipos extends javax.swing.JFrame {
                                 .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel14))
                         .addGap(5, 5, 5)
-                        .addComponent(jButton1)
+                        .addComponent(btnGuardar)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -245,6 +247,7 @@ public class InvEquipos extends javax.swing.JFrame {
             }
         });
 
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/Arrow-Back-4-icon.png"))); // NOI18N
         btnAtras.setText("Atrás");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,11 +264,11 @@ public class InvEquipos extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/plus.png"))); // NOI18N
-        jButton2.setText("Nuevo empleado");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnNempleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/plus.png"))); // NOI18N
+        btnNempleado.setText("Nuevo empleado");
+        btnNempleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnNempleadoActionPerformed(evt);
             }
         });
 
@@ -276,12 +279,6 @@ public class InvEquipos extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(11, 11, 11)
-                        .addComponent(botonGuardarEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -304,11 +301,17 @@ public class InvEquipos extends javax.swing.JFrame {
                             .addComponent(txtSysOp)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                         .addComponent(comboEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(labelIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labelIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnNempleado)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonGuardarEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -356,7 +359,7 @@ public class InvEquipos extends javax.swing.JFrame {
                     .addComponent(btnAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(botonGuardarEquipo)
-                        .addComponent(jButton2)))
+                        .addComponent(btnNempleado)))
                 .addContainerGap())
         );
 
@@ -434,7 +437,7 @@ public class InvEquipos extends javax.swing.JFrame {
         
     }//GEN-LAST:event_comboEmpleadoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
             Statement stmt = Conexion.Conectarse().createStatement();
             String insertar = "INSERT INTO empleado (oficina, cargo, nombre, apellidos) values("+idoficina+",'"+txtCargo.getText()+"','"+txtNombres.getText()+"','"+txtApellidos.getText()+"')";
@@ -458,16 +461,16 @@ public class InvEquipos extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void comboOficinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOficinasActionPerformed
         getIdOficina();
     }//GEN-LAST:event_comboOficinasActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnNempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNempleadoActionPerformed
         dialogoOperador.setVisible(true);
         getIdOficina();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnNempleadoActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if (tablaEmpleado.getSelectedRow() != -1) {
@@ -543,11 +546,11 @@ public class InvEquipos extends javax.swing.JFrame {
     private javax.swing.JButton botonGuardarEquipo;
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnNempleado;
     private javax.swing.JComboBox comboEmpleado;
     private javax.swing.JComboBox comboOficinas;
     private javax.swing.JDialog dialogoOperador;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

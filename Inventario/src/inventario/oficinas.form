@@ -124,10 +124,10 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="comboOficinas" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnAtras" min="-2" pref="71" max="-2" attributes="0"/>
-                          <EmptySpace pref="206" max="32767" attributes="0"/>
+                      <Component id="comboOficinas" pref="348" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="btnAtras" min="-2" pref="107" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnAcceder" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -140,7 +140,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="comboOficinas" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnAtras" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="btnAcceder" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
@@ -165,6 +165,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAtras">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/recursos/Imagenes/Arrow-Back-4-icon.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
           </Properties>
           <Events>
@@ -173,6 +176,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAcceder">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/recursos/Imagenes/Key-icon2.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Acceder"/>
           </Properties>
           <Events>
