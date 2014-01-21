@@ -39,11 +39,16 @@ public class Administracion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INVENTARIO - ADMINISTRACIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INVENTARIO - ADMINISTRACIÓN", 1, 2));
         jPanel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         btnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/inventario.png"))); // NOI18N
         btnInventario.setText("Inventario");
+        btnInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventarioActionPerformed(evt);
+            }
+        });
 
         btnOficinas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/oficinas.png"))); // NOI18N
         btnOficinas.setText("Oficinas");
@@ -114,6 +119,10 @@ public class Administracion extends javax.swing.JFrame {
         this.setVisible(false);
         new Login().setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
+        new InvEquipos().setVisible(true);
+    }//GEN-LAST:event_btnInventarioActionPerformed
 
     /**
      * @param args the command line arguments
