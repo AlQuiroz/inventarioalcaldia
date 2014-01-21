@@ -252,6 +252,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarActionPerformed
+        llenarUsuarios();
         dialogoUsuarios.setVisible(true);
     }//GEN-LAST:event_btnGestionarActionPerformed
 
@@ -332,7 +333,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
     }
 
     private String[] getColumnas() {
-        String columna[]=new String[]{"Nombre(s) y Apellidos", "Usuario", "Clave"};
+        String columna[] = new String[]{"Nombre(s) y Apellidos", "Usuario", "Clave"};
         return columna;
     }
 }
