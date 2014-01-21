@@ -27,7 +27,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
     public NuevoUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
-        dialogoUsuarios.setLocationRelativeTo(null);
+        dialogoUsuarios.setLocationRelativeTo(null);        
         setResizable(false);
         setTitle("Crear Usuario");
         setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
@@ -46,6 +46,8 @@ public class NuevoUsuario extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuarios = new javax.swing.JTable();
+        btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -62,9 +64,6 @@ public class NuevoUsuario extends javax.swing.JFrame {
 
         tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
                 {null, null, null}
             },
             new String [] {
@@ -73,17 +72,33 @@ public class NuevoUsuario extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaUsuarios);
 
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/Gear-icon.png"))); // NOI18N
+        btnModificar.setText("Modificar");
+
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/Letter-X-icon.png"))); // NOI18N
+        btnEliminar.setText("Eliminar Usuario");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEliminar)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 109, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnModificar)
+                    .addComponent(btnEliminar))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout dialogoUsuariosLayout = new javax.swing.GroupLayout(dialogoUsuarios.getContentPane());
@@ -252,8 +267,8 @@ public class NuevoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarActionPerformed
-        llenarUsuarios();
-        dialogoUsuarios.setVisible(true);
+        llenarUsuarios();        
+        dialogoUsuarios.setVisible(true);        
     }//GEN-LAST:event_btnGestionarActionPerformed
 
     /**
@@ -293,7 +308,9 @@ public class NuevoUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGestionar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JDialog dialogoUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
