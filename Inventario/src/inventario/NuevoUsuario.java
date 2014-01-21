@@ -8,10 +8,12 @@ import bd.Conexion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,6 +27,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
     public NuevoUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
+        dialogoUsuarios.setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Crear Usuario");
         setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
@@ -39,6 +42,10 @@ public class NuevoUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogoUsuarios = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaUsuarios = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -51,6 +58,50 @@ public class NuevoUsuario extends javax.swing.JFrame {
         btnAtras = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtClave = new javax.swing.JPasswordField();
+        btnGestionar = new javax.swing.JButton();
+
+        tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nombre(s) y Apellidos", "Usuario", "Clave"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaUsuarios);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 109, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout dialogoUsuariosLayout = new javax.swing.GroupLayout(dialogoUsuarios.getContentPane());
+        dialogoUsuarios.getContentPane().setLayout(dialogoUsuariosLayout);
+        dialogoUsuariosLayout.setHorizontalGroup(
+            dialogoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoUsuariosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        dialogoUsuariosLayout.setVerticalGroup(
+            dialogoUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoUsuariosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro: Nuevo Usuario"));
 
@@ -62,6 +113,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
 
         jLabel4.setText("Clave:");
 
+        btnCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/Add-Symbol-icon.png"))); // NOI18N
         btnCrear.setText("Crear");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,10 +121,19 @@ public class NuevoUsuario extends javax.swing.JFrame {
             }
         });
 
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/Arrow-Back-4-icon.png"))); // NOI18N
         btnAtras.setText("Atrás");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtrasActionPerformed(evt);
+            }
+        });
+
+        btnGestionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/More-People-icon.png"))); // NOI18N
+        btnGestionar.setText("Gestionar Usuario");
+        btnGestionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionarActionPerformed(evt);
             }
         });
 
@@ -82,26 +143,39 @@ public class NuevoUsuario extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4))
-                            .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                            .addComponent(txtNombre)
-                            .addComponent(txtNewuser)
-                            .addComponent(btnCrear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtClave))))
-                .addGap(36, 36, 36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(txtApellido))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(txtNombre))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtClave)
+                                            .addComponent(txtNewuser)))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnGestionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(10, 10, 10)))
+                .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,11 +196,12 @@ public class NuevoUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCrear)
-                    .addComponent(btnAtras))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                    .addComponent(btnAtras)
+                    .addComponent(btnGestionar)
+                    .addComponent(btnCrear))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5))
         );
 
@@ -159,22 +234,26 @@ public class NuevoUsuario extends javax.swing.JFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         String usuario = txtNewuser.getText();
         String clave = new String(txtClave.getPassword());
-        String nombres = txtNombre.getText() +" "+ txtApellido.getText();
+        String nombres = txtNombre.getText() + " " + txtApellido.getText();
         try {
             Statement stmt = Conexion.Conectarse().createStatement();
-            int rs = stmt.executeUpdate("INSERT INTO usuario (usuario,clave,nombres) VALUES ('"+usuario+"','"+clave+"','"+nombres+"')");
+            int rs = stmt.executeUpdate("INSERT INTO usuario (usuario,clave,nombres) VALUES ('" + usuario + "','" + clave + "','" + nombres + "')");
             if (rs > 0) {
                 JOptionPane.showMessageDialog(rootPane, "Se ha insertado correctamente el usuario");
                 this.setVisible(false);
                 new Login().setVisible(true);
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "No se ha insertado correctamente el usuario","Error",JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No se ha insertado correctamente el usuario", "Error", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "ha ocurrido algo inesperado!","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "ha ocurrido algo inesperado!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void btnGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarActionPerformed
+        dialogoUsuarios.setVisible(true);
+    }//GEN-LAST:event_btnGestionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,15 +292,47 @@ public class NuevoUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnGestionar;
+    private javax.swing.JDialog dialogoUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaUsuarios;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JPasswordField txtClave;
     private javax.swing.JTextField txtNewuser;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+
+    private void llenarUsuarios() {
+        Object datos[] = new Object[3];
+        DefaultTableModel defaultTableModel;
+        try {
+            defaultTableModel = new DefaultTableModel(null, getColumnas());
+            tablaUsuarios.setModel(defaultTableModel);
+            Statement stmt = Conexion.Conectarse().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT nombres, usuario, clave from usuario");
+            while (rs.next()) {
+                for (int i = 0; i < 3; i++) {
+                    datos[i] = rs.getObject(i + 1);
+                }
+                defaultTableModel.addRow(datos);
+            }
+
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error consultando los usuarios", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+    }
+
+    private String[] getColumnas() {
+        String columna[]=new String[]{"Nombre(s) y Apellidos", "Usuario", "Clave"};
+        return columna;
+    }
 }
