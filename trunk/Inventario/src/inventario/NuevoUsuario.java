@@ -267,8 +267,11 @@ public class NuevoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarActionPerformed
-        llenarUsuarios();        
+        llenarUsuarios();  
         dialogoUsuarios.setVisible(true);        
+        dialogoUsuarios.setSize(400, 400);
+        dialogoUsuarios.setTitle("Gestionar los Usuarios");
+        dialogoUsuarios.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
     }//GEN-LAST:event_btnGestionarActionPerformed
 
     /**
