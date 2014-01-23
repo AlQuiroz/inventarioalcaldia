@@ -27,7 +27,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
     public NuevoUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
-        dialogoUsuarios.setLocationRelativeTo(null);        
+        dialogoUsuarios.setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Crear Usuario");
         setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
@@ -77,6 +77,11 @@ public class NuevoUsuario extends javax.swing.JFrame {
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/Letter-X-icon.png"))); // NOI18N
         btnEliminar.setText("Eliminar Usuario");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -267,12 +272,41 @@ public class NuevoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarActionPerformed
-        llenarUsuarios();  
-        dialogoUsuarios.setVisible(true);        
+        llenarUsuarios();
+        dialogoUsuarios.setVisible(true);
         dialogoUsuarios.setSize(400, 400);
         dialogoUsuarios.setTitle("Gestionar los Usuarios");
         dialogoUsuarios.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
     }//GEN-LAST:event_btnGestionarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (tablaUsuarios.getSelectedRow() != -1) {
+            String usuario = (String) tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0);
+            int confirmar = JOptionPane.showConfirmDialog(rootPane, "¿Está usted seguro de eliminar al de usuario " + usuario + " del sistema?");
+            if (confirmar == JOptionPane.YES_OPTION) {
+                try {
+                    Statement stmt = Conexion.Conectarse().createStatement();
+                    System.out.println("ID USUARIO " + idusuario);
+                    ResultSet resultSet = stmt.executeQuery("select id from usuario where nombre_usuario ='" + usuario + "'");
+                    while (resultSet.next()) {
+                        idusuario = resultSet.getInt("id");
+                    }
+                    String eliminarUsuario = "DELETE FROM usuario WHERE usuario ='" + idusuario + "'";
+                    int resultadoUsuario = stmt.executeUpdate(eliminarUsuario);
+                    llenarUsuarios();
+                    if (resultadoUsuario > 0) {
+                        JOptionPane.showMessageDialog(rootPane, "Se ha eliminado con éxito el usuario de la base de datos.");
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un problema eliminando el usuario", "Error", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
+                }
+            }
+
+        }else{
+         JOptionPane.showMessageDialog(rootPane, "Por favor seleccione un usuario a eliminar.");   
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
