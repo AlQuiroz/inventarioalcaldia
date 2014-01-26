@@ -22,9 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class NuevoUsuario extends javax.swing.JFrame {
     Integer idusuario = new Integer(0);
 
-    /**
-     * Creates new form NuevoUsuario
-     */
+    
     public NuevoUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -288,7 +286,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
                 try {
                     Statement stmt = Conexion.Conectarse().createStatement();
                     System.out.println("ID USUARIO " + idusuario);
-                    ResultSet resultSet = stmt.executeQuery("select id from usuario where nombre_usuario ='" + usuario + "'");
+                    ResultSet resultSet = stmt.executeQuery("select id from usuario where usuario ='" + usuario + "'");
                     while (resultSet.next()) {
                         idusuario = resultSet.getInt("id");
                     }
