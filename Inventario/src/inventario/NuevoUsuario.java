@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Pedro M
  */
 public class NuevoUsuario extends javax.swing.JFrame {
+    Integer idusuario = new Integer(0);
 
     /**
      * Creates new form NuevoUsuario
