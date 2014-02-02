@@ -83,6 +83,7 @@ public class InvEquipos extends javax.swing.JFrame {
 
         jLabel1.setText("Oficina:");
 
+        comboOficinas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione una oficina" }));
         comboOficinas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboOficinasActionPerformed(evt);
@@ -519,6 +520,22 @@ public class InvEquipos extends javax.swing.JFrame {
     }//GEN-LAST:event_comboEmpleadoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        if (comboOficinas.getSelectedIndex() == 0) {
+        JOptionPane.showMessageDialog(rootPane, "Seleccione una oficina por favor. ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(txtCargo.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Digite el cargo del dependiente. ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(txtNombres.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Digite el nombre del dependiente. ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(txtApellidos.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Digite los apellidos del dependiente. ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        else {
+            
+        
         try {
             Statement stmt = Conexion.Conectarse().createStatement();
             String insertar = "INSERT INTO empleado (oficina, cargo, nombre, apellidos) values(" + idoficina + ",'" + txtCargo.getText() + "','" + txtNombres.getText() + "','" + txtApellidos.getText() + "')";
@@ -541,7 +558,7 @@ public class InvEquipos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error insertando el operador", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
-
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void comboOficinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOficinasActionPerformed
