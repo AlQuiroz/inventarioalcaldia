@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -24,11 +25,14 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class Oficinas extends javax.swing.JFrame {
+
     Integer indice = 0;
     Integer idoficina = 0;
     Integer idempleado = 0;
-    Object datos[]=new Object[3]; 
-    DefaultTableModel defaultTableModel = new DefaultTableModel(null, getColumnas());;
+    Object datos[] = new Object[3];
+    DefaultTableModel defaultTableModel = new DefaultTableModel(null, getColumnas());
+
+    ;
     
     
     public Oficinas() {
@@ -41,6 +45,7 @@ public class Oficinas extends javax.swing.JFrame {
         dialogoNomina.setSize(500, 500);
         llenarOficinas();
         eventoTabla();
+        setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -51,6 +56,7 @@ public class Oficinas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaNomina = new javax.swing.JTable();
         botonGenerarPDF = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         comboOficinas = new javax.swing.JComboBox();
         btnAtras = new javax.swing.JButton();
@@ -81,23 +87,35 @@ public class Oficinas extends javax.swing.JFrame {
             }
         });
 
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/Arrow-Back-4-icon.png"))); // NOI18N
+        btnBack.setText("Atrás");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout dialogoNominaLayout = new javax.swing.GroupLayout(dialogoNomina.getContentPane());
         dialogoNomina.getContentPane().setLayout(dialogoNominaLayout);
         dialogoNominaLayout.setHorizontalGroup(
             dialogoNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-            .addGroup(dialogoNominaLayout.createSequentialGroup()
-                .addGap(125, 125, 125)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoNominaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonGenerarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         dialogoNominaLayout.setVerticalGroup(
             dialogoNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogoNominaLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(botonGenerarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 53, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(dialogoNominaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonGenerarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 63, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -175,9 +193,14 @@ public class Oficinas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
-        if (comboOficinas.getSelectedIndex() != -1) {
-            llenarNominaPorOficina();
-            dialogoNomina.setVisible(true);
+        if (comboOficinas.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione una oficina por favor. ", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            this.setVisible(false);
+            if (comboOficinas.getSelectedIndex() != -1) {
+                llenarNominaPorOficina();
+                dialogoNomina.setVisible(true);
+            }
         }
     }//GEN-LAST:event_btnAccederActionPerformed
 
@@ -209,11 +232,17 @@ public class Oficinas extends javax.swing.JFrame {
             visor.setVisible(true);
             botonGenerarPDF.setEnabled(false);
         } catch (HeadlessException | JRException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido una excepcion creando el reporte","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido una excepcion creando el reporte", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_botonGenerarPDFActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        dialogoNomina.dispose();
+        Oficinas of = new Oficinas();
+        of.setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -250,6 +279,7 @@ public class Oficinas extends javax.swing.JFrame {
     private javax.swing.JButton botonGenerarPDF;
     private javax.swing.JButton btnAcceder;
     private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnBack;
     private javax.swing.JComboBox comboOficinas;
     private javax.swing.JDialog dialogoNomina;
     private javax.swing.JPanel jPanel2;
@@ -269,23 +299,23 @@ public class Oficinas extends javax.swing.JFrame {
                 comboOficinas.addItem(string);
             }
             rs.close();
-            
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error consultando las oficinas","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error consultando las oficinas", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
 
     private void llenarNominaPorOficina() {
 //        Object datos[]=new Object[3]; 
-        
+
         try {
-            
+
             tablaNomina.setModel(defaultTableModel);
             Statement stmt = Conexion.Conectarse().createStatement();
             Statement stmt2 = Conexion.Conectarse().createStatement();
-            String consulta = "SELECT e.nombre,e.apellidos,e.cargo from empleado e WHERE e.oficina = "+idoficina+"";
-            String consultaTitulo = "SELECT o.nombre from oficinas o WHERE o.id = "+idoficina+"";
+            String consulta = "SELECT e.nombre,e.apellidos,e.cargo from empleado e WHERE e.oficina = " + idoficina + "";
+            String consultaTitulo = "SELECT o.nombre from oficinas o WHERE o.id = " + idoficina + "";
             ResultSet rs = stmt.executeQuery(consulta);
             ResultSet rs2 = stmt2.executeQuery(consultaTitulo);
             String titulo = "";
@@ -300,45 +330,47 @@ public class Oficinas extends javax.swing.JFrame {
             }
             rs.close();
             rs2.close();
-            
-            dialogoNomina.setTitle("Empleados de la oficina de "+titulo);
+
+            dialogoNomina.setTitle("Empleados de la oficina de " + titulo);
             rs.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error consultando los empleados","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error consultando los empleados", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
-    private String[] getColumnas(){
-        String columna[]=new String[]{"Empleado","Apellido","Cargo"};
+
+    private String[] getColumnas() {
+        String columna[] = new String[]{"Empleado", "Apellido", "Cargo"};
         return columna;
     }
 
     private void getIdOficina() {
         try {
             Statement stmt = Conexion.Conectarse().createStatement();
-            ResultSet resulset = stmt.executeQuery("SELECT id FROM oficinas WHERE nombre = '"+comboOficinas.getItemAt(comboOficinas.getSelectedIndex())+"'");
+            ResultSet resulset = stmt.executeQuery("SELECT id FROM oficinas WHERE nombre = '" + comboOficinas.getItemAt(comboOficinas.getSelectedIndex()) + "'");
             while (resulset.next()) {
                 idoficina = resulset.getInt("id");
             }
-            System.out.println("ID Oficina--> "+idoficina);
-            
+            System.out.println("ID Oficina--> " + idoficina);
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error cargando el id de la oficina","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error cargando el id de la oficina", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
+
     private void getIdEmpleado() {
         try {
             String nombreEmpleado = (String) tablaNomina.getValueAt(tablaNomina.getSelectedRow(), 0);
             Statement stmt = Conexion.Conectarse().createStatement();
-            ResultSet resulset = stmt.executeQuery("SELECT id FROM empleado WHERE nombre = '"+nombreEmpleado+"'");
+            ResultSet resulset = stmt.executeQuery("SELECT id FROM empleado WHERE nombre = '" + nombreEmpleado + "'");
             while (resulset.next()) {
                 idempleado = resulset.getInt("id");
             }
-            System.out.println("ID Empleado--> "+idempleado);
-            
+            System.out.println("ID Empleado--> " + idempleado);
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error cargando el id del empleado","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error cargando el id del empleado", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
