@@ -10,8 +10,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class InvEquipos extends javax.swing.JFrame {
+
     Integer idoficina = new Integer(0);
     Integer idempleado = new Integer(0);
+
     public InvEquipos() {
         initComponents();
 //        getIdOficina();
@@ -23,6 +25,7 @@ public class InvEquipos extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Actualizar Información");
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -225,19 +228,67 @@ public class InvEquipos extends javax.swing.JFrame {
 
         jLabel5.setText("SISTEMA OPERATIVO:");
 
+        txtSysOp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSysOpActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("PROCESADOR:");
+
+        txtProcesador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProcesadorActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("MEMORIA RAM:");
 
+        txtRam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRamActionPerformed(evt);
+            }
+        });
+
         jLabel8.setText("DISCO DURO:");
+
+        txtDisco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDiscoActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("MONITOR:");
 
+        txtMonitor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMonitorActionPerformed(evt);
+            }
+        });
+
         jLabel10.setText("MOUSE:");
+
+        txtMouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMouseActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("TECLADO:");
 
+        txtTeclado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTecladoActionPerformed(evt);
+            }
+        });
+
         jLabel12.setText("IMPRESORA:");
+
+        txtImpresora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtImpresoraActionPerformed(evt);
+            }
+        });
 
         botonGuardarEquipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/diskette.png"))); // NOI18N
         botonGuardarEquipo.setText("Guardar");
@@ -390,32 +441,62 @@ public class InvEquipos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void botonGuardarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarEquipoActionPerformed
-        try {
-            Statement stmt = Conexion.Conectarse().createStatement();
-            String insertar = "INSERT INTO descequipo (sistemaoperativo, procesador, memoriaram, discoduro, monitor, mouse, teclado, impresora, empleado) "
-            + "values('"+txtSysOp.getText()+"','"+txtProcesador.getText()+"','"+txtRam.getText()+"','"+txtDisco.getText()+"','"+txtMouse.getText()+"',"
-            + "'"+txtMonitor.getText()+"','"+txtTeclado.getText()+"','"+txtImpresora.getText()+"',"+idempleado+")";
-            System.out.println("INSERTAR--> "+insertar);
-            int resultado = stmt.executeUpdate(insertar);//descomentar
-            if (resultado > 0) {
-                JOptionPane.showMessageDialog(rootPane, "Se ha agregado el empleado con exito");
-                txtSysOp.setText("");
-                txtProcesador.setText("");
-                txtRam.setText("");
-                txtDisco.setText("");
-                txtMonitor.setText("");
-                txtMouse.setText("");
-                txtTeclado.setText("");
-                txtImpresora.setText("");
-                comboEmpleado.setSelectedIndex(0);
-                llenarEmpleados();
+        if (comboEmpleado.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un empleado por favor. ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(txtSysOp.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Digite el Sistema Operativo. ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        else if(txtDisco.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Digite el Disco Duro. ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(txtImpresora.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Digite la impresora. ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(txtMonitor.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Digite el monitor. ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(txtMouse.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Digite el mouse. ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(txtProcesador.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Digite el procesador. ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(txtRam.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Digite la capacidad de la Memoria Ram. ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(txtTeclado.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Digite el teclado. ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+
+            try {
+                Statement stmt = Conexion.Conectarse().createStatement();
+                String insertar = "INSERT INTO descequipo (sistemaoperativo, procesador, memoriaram, discoduro, monitor, mouse, teclado, impresora, empleado) "
+                        + "values('" + txtSysOp.getText() + "','" + txtProcesador.getText() + "','" + txtRam.getText() + "','" + txtDisco.getText() + "','" + txtMouse.getText() + "',"
+                        + "'" + txtMonitor.getText() + "','" + txtTeclado.getText() + "','" + txtImpresora.getText() + "'," + idempleado + ")";
+                System.out.println("INSERTAR--> " + insertar);
+                int resultado = stmt.executeUpdate(insertar);//descomentar
+                if (resultado > 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Se ha agregado el empleado con exito");
+                    txtSysOp.setText("");
+                    txtProcesador.setText("");
+                    txtRam.setText("");
+                    txtDisco.setText("");
+                    txtMonitor.setText("");
+                    txtMouse.setText("");
+                    txtTeclado.setText("");
+                    txtImpresora.setText("");
+                    comboEmpleado.setSelectedIndex(0);
+                    llenarEmpleados();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error insertando el empleado", "Error", JOptionPane.WARNING_MESSAGE);
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error insertando el empleado", "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
             }
-            else{
-                JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error insertando el empleado","Error",JOptionPane.WARNING_MESSAGE);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error insertando el empleado","Error",JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
         }
     }//GEN-LAST:event_botonGuardarEquipoActionPerformed
 
@@ -423,25 +504,25 @@ public class InvEquipos extends javax.swing.JFrame {
         dialogoOperador.setModal(true);
         try {
             Statement stmt = Conexion.Conectarse().createStatement();
-            ResultSet resulset = stmt.executeQuery("SELECT id FROM empleado WHERE nombre = '"+comboEmpleado.getItemAt(comboEmpleado.getSelectedIndex())+"'");
+            ResultSet resulset = stmt.executeQuery("SELECT id FROM empleado WHERE nombre = '" + comboEmpleado.getItemAt(comboEmpleado.getSelectedIndex()) + "'");
             while (resulset.next()) {
                 idempleado = resulset.getInt("id");
             }
-            System.out.println("ID Empleado--> "+idempleado);
-            
+            System.out.println("ID Empleado--> " + idempleado);
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error cargando el id del empleado","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error cargando el id del empleado", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
-        
-        
+
+
     }//GEN-LAST:event_comboEmpleadoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
             Statement stmt = Conexion.Conectarse().createStatement();
-            String insertar = "INSERT INTO empleado (oficina, cargo, nombre, apellidos) values("+idoficina+",'"+txtCargo.getText()+"','"+txtNombres.getText()+"','"+txtApellidos.getText()+"')";
-            System.out.println("INSERTAR--> "+insertar);
+            String insertar = "INSERT INTO empleado (oficina, cargo, nombre, apellidos) values(" + idoficina + ",'" + txtCargo.getText() + "','" + txtNombres.getText() + "','" + txtApellidos.getText() + "')";
+            System.out.println("INSERTAR--> " + insertar);
             int resultado = stmt.executeUpdate(insertar);
             if (resultado > 0) {
                 JOptionPane.showMessageDialog(rootPane, "Se ha agregado el operador con exito");
@@ -453,14 +534,14 @@ public class InvEquipos extends javax.swing.JFrame {
                 comboEmpleado.removeAllItems();
                 comboEmpleado.setSelectedIndex(0);
                 llenarComboEmpleados();
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error insertando el operador","Error",JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error insertando el operador", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error insertando el operador","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error insertando el operador", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void comboOficinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOficinasActionPerformed
@@ -475,17 +556,17 @@ public class InvEquipos extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if (tablaEmpleado.getSelectedRow() != -1) {
             String nombre_empleado = (String) tablaEmpleado.getValueAt(tablaEmpleado.getSelectedRow(), 0);
-            int confirmar = JOptionPane.showConfirmDialog(rootPane, "¿Está usted seguro de elimiar el empleado "+nombre_empleado+"?");
+            int confirmar = JOptionPane.showConfirmDialog(rootPane, "¿Está usted seguro de elimiar el empleado " + nombre_empleado + "?");
             if (confirmar == JOptionPane.YES_OPTION) {
                 try {
                     Statement stmt = Conexion.Conectarse().createStatement();
-                    System.out.println("ID EMPLEADO "+idempleado);
-                    ResultSet resultSet = stmt.executeQuery("select id from empleado where nombre ='"+nombre_empleado+"'");
+                    System.out.println("ID EMPLEADO " + idempleado);
+                    ResultSet resultSet = stmt.executeQuery("select id from empleado where nombre ='" + nombre_empleado + "'");
                     while (resultSet.next()) {
                         idempleado = resultSet.getInt("id");
                     }
-                    String eliminarEquipo = "DELETE FROM descequipo WHERE empleado ='"+idempleado+"'";
-                    String eliminarEmpleado = "DELETE FROM empleado WHERE nombre ='"+nombre_empleado+"'";
+                    String eliminarEquipo = "DELETE FROM descequipo WHERE empleado ='" + idempleado + "'";
+                    String eliminarEmpleado = "DELETE FROM empleado WHERE nombre ='" + nombre_empleado + "'";
                     int resultadoEquipo = stmt.executeUpdate(eliminarEquipo);
                     int resultadoEmpleado = stmt.executeUpdate(eliminarEmpleado);
                     llenarEmpleados();
@@ -493,15 +574,47 @@ public class InvEquipos extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, "Se ha eliminado con éxito el empleado de la base de datos.");
                     }
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un problema eliminando el empleado","Error",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un problema eliminando el empleado", "Error", JOptionPane.ERROR_MESSAGE);
                     e.printStackTrace();
                 }
-                
+
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Por favor seleccione un empleado a eliminar.");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtSysOpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSysOpActionPerformed
+        
+    }//GEN-LAST:event_txtSysOpActionPerformed
+
+    private void txtProcesadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProcesadorActionPerformed
+        
+    }//GEN-LAST:event_txtProcesadorActionPerformed
+
+    private void txtRamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRamActionPerformed
+       
+    }//GEN-LAST:event_txtRamActionPerformed
+
+    private void txtDiscoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiscoActionPerformed
+        
+    }//GEN-LAST:event_txtDiscoActionPerformed
+
+    private void txtMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMonitorActionPerformed
+        
+    }//GEN-LAST:event_txtMonitorActionPerformed
+
+    private void txtMouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMouseActionPerformed
+        
+    }//GEN-LAST:event_txtMouseActionPerformed
+
+    private void txtTecladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTecladoActionPerformed
+        
+    }//GEN-LAST:event_txtTecladoActionPerformed
+
+    private void txtImpresoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImpresoraActionPerformed
+        
+    }//GEN-LAST:event_txtImpresoraActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -516,7 +629,6 @@ public class InvEquipos extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
 
                 }
             }
@@ -592,22 +704,22 @@ public class InvEquipos extends javax.swing.JFrame {
             ResultSet rs = stmt.executeQuery("SELECT * FROM oficinas");
             while (rs.next()) {
                 listaOficina.add(rs.getString("nombre"));
-                
+
             }
             for (String string : listaOficina) {
                 comboOficinas.addItem(string);
             }
             rs.close();
-            
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error consultando las oficinas","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error consultando las oficinas", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
-        
+
     }
 
     private void llenarEmpleados() {
-        Object datos[]=new Object[3]; 
+        Object datos[] = new Object[3];
         DefaultTableModel defaultTableModel;
         try {
             defaultTableModel = new DefaultTableModel(null, getColumnas());
@@ -620,20 +732,21 @@ public class InvEquipos extends javax.swing.JFrame {
                 }
                 defaultTableModel.addRow(datos);
             }
-            
+
             rs.close();
-            
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error consultando los empleados","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error consultando los empleados", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
-    
-    private String[] getColumnas(){
-        String columna[]=new String[]{"Empleado","Cargo","Oficina"};
+
+    private String[] getColumnas() {
+        String columna[] = new String[]{"Empleado", "Cargo", "Oficina"};
         return columna;
     }
-    private void llenarComboEmpleados(){
+
+    private void llenarComboEmpleados() {
         List<String> listaOficina = new ArrayList<>();
         try {
             Statement stmt = Conexion.Conectarse().createStatement();
@@ -646,21 +759,22 @@ public class InvEquipos extends javax.swing.JFrame {
             }//llena el combo de empleados
             rs.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un problema llenando los empleados","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un problema llenando los empleados", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
-    private void getIdOficina(){
+
+    private void getIdOficina() {
         try {
             Statement stmt = Conexion.Conectarse().createStatement();
-            ResultSet resulset = stmt.executeQuery("SELECT id FROM oficinas WHERE nombre = '"+comboOficinas.getItemAt(comboOficinas.getSelectedIndex())+"'");
+            ResultSet resulset = stmt.executeQuery("SELECT id FROM oficinas WHERE nombre = '" + comboOficinas.getItemAt(comboOficinas.getSelectedIndex()) + "'");
             while (resulset.next()) {
                 idoficina = resulset.getInt("id");
             }
-            System.out.println("ID Oficina--> "+idoficina);
-            
+            System.out.println("ID Oficina--> " + idoficina);
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error cargando el id de la oficina","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error cargando el id de la oficina", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }

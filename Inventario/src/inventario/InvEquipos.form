@@ -416,6 +416,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSysOp">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSysOpActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -423,6 +426,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtProcesador">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProcesadorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
@@ -430,6 +436,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtRam">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRamActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
@@ -437,6 +446,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDisco">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDiscoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
@@ -444,6 +456,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtMonitor">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMonitorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
@@ -451,6 +466,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtMouse">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMouseActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
@@ -458,6 +476,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTeclado">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTecladoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
@@ -465,6 +486,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtImpresora">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtImpresoraActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonGuardarEquipo">
           <Properties>
