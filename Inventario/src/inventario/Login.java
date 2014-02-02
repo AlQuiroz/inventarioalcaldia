@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
-
-
 public class Login extends javax.swing.JFrame {
 
     public Login() {
@@ -16,8 +14,6 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Alcaldía Municipal de Roldanillo");
     }
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -119,7 +115,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void txtClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyPressed
-        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             autenticarUsuario();
         }
     }//GEN-LAST:event_txtClaveKeyPressed
@@ -167,26 +163,34 @@ public class Login extends javax.swing.JFrame {
 
     private void autenticarUsuario() {
         String clave = new String(txtClave.getPassword());
-        try {
-            Statement stmt = Conexion.Conectarse().createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE usuario = '"+txtUsuario.getText()+"'");
-            if (rs.next()) {
-                if (rs.getString("clave").equals(clave)) {
-                    JOptionPane.showMessageDialog(rootPane, "Bienvenido al sistema "+rs.getString("nombres"));
-                    this.setVisible(false);
-                    Administracion administracion = new Administracion();
-                    administracion.setVisible(true);
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "Clave incorrecta","Error",JOptionPane.WARNING_MESSAGE);
+        if (txtUsuario.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Digite su cuenta. ", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (txtClave.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Digite su clave. ", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            try {
+                Statement stmt = Conexion.Conectarse().createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE usuario = '" + txtUsuario.getText() + "'");
+                if (rs.next()) {
+                    if (rs.getString("clave").equals(clave)) {
+                        JOptionPane.showMessageDialog(rootPane, "Bienvenido al sistema " + rs.getString("nombres"));
+
+                        this.setVisible(false);
+                        Administracion administracion = new Administracion();
+                        administracion.setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Clave incorrecta", "Error", JOptionPane.WARNING_MESSAGE);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+                    txtUsuario.requestFocus();
                 }
-                
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Usuario no encontrado","Error",JOptionPane.ERROR_MESSAGE);
-                txtUsuario.requestFocus();
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }
