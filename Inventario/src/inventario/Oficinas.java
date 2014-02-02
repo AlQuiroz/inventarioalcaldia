@@ -1,7 +1,6 @@
 package inventario;
 
 import bd.Conexion;
-import java.awt.Dialog;
 import java.awt.HeadlessException;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -13,8 +12,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -26,6 +26,10 @@ import net.sf.jasperreports.view.JasperViewer;
 public class Oficinas extends javax.swing.JFrame {
     Integer indice = 0;
     Integer idoficina = 0;
+    Integer idempleado = 0;
+    Object datos[]=new Object[3]; 
+    DefaultTableModel defaultTableModel = new DefaultTableModel(null, getColumnas());;
+    
     
     public Oficinas() {
         initComponents();
@@ -36,6 +40,7 @@ public class Oficinas extends javax.swing.JFrame {
 //        setTitle("Oficinas");
         dialogoNomina.setSize(500, 500);
         llenarOficinas();
+        eventoTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -191,6 +196,7 @@ public class Oficinas extends javax.swing.JFrame {
             File file = new File("reporte.jasper");
             Map<String, Object> mapa = new HashMap<>();
             mapa.put("oficina", idoficina);
+            mapa.put("empleado", idempleado);
             JasperReport reporte = (JasperReport) JRLoader.loadObject(file);
             JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, mapa, Conexion.Conectarse());
             JasperViewer visor = new JasperViewer(jasperPrint, false);
@@ -271,10 +277,10 @@ public class Oficinas extends javax.swing.JFrame {
     }
 
     private void llenarNominaPorOficina() {
-        Object datos[]=new Object[3]; 
-        DefaultTableModel defaultTableModel;
+//        Object datos[]=new Object[3]; 
+        
         try {
-            defaultTableModel = new DefaultTableModel(null, getColumnas());
+            
             tablaNomina.setModel(defaultTableModel);
             Statement stmt = Conexion.Conectarse().createStatement();
             Statement stmt2 = Conexion.Conectarse().createStatement();
@@ -320,5 +326,29 @@ public class Oficinas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error cargando el id de la oficina","Error",JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
+    }
+    private void getIdEmpleado() {
+        try {
+            String nombreEmpleado = (String) tablaNomina.getValueAt(tablaNomina.getSelectedRow(), 0);
+            Statement stmt = Conexion.Conectarse().createStatement();
+            ResultSet resulset = stmt.executeQuery("SELECT id FROM empleado WHERE nombre = '"+nombreEmpleado+"'");
+            while (resulset.next()) {
+                idempleado = resulset.getInt("id");
+            }
+            System.out.println("ID Empleado--> "+idempleado);
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error cargando el id del empleado","Error",JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+    }
+
+    private void eventoTabla() {
+        tablaNomina.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                getIdEmpleado();
+            }
+        });
     }
 }
