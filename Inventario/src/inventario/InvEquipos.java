@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,6 +25,7 @@ public class InvEquipos extends javax.swing.JFrame {
         dialogoOperador.setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Actualizar Información");
+        setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -47,6 +49,7 @@ public class InvEquipos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaEmpleado = new javax.swing.JTable();
         btnEliminar = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtSysOp = new javax.swing.JTextField();
@@ -134,6 +137,14 @@ public class InvEquipos extends javax.swing.JFrame {
             }
         });
 
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/Arrow-Back-4-icon.png"))); // NOI18N
+        btnBack.setText("Atrás");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -163,8 +174,11 @@ public class InvEquipos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnEliminar)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEliminar))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(labelIdOficina, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,7 +216,9 @@ public class InvEquipos extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBack))
                         .addGap(0, 57, Short.MAX_VALUE))))
         );
 
@@ -566,8 +582,11 @@ public class InvEquipos extends javax.swing.JFrame {
     }//GEN-LAST:event_comboOficinasActionPerformed
 
     private void btnNempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNempleadoActionPerformed
-        dialogoOperador.setVisible(true);
         getIdOficina();
+        this.setVisible(false);
+        dialogoOperador.setVisible(true);
+        dialogoOperador.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        
     }//GEN-LAST:event_btnNempleadoActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -632,6 +651,12 @@ public class InvEquipos extends javax.swing.JFrame {
     private void txtImpresoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImpresoraActionPerformed
         
     }//GEN-LAST:event_txtImpresoraActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        dialogoOperador.dispose();
+        InvEquipos inv = new InvEquipos();
+        inv.setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -674,6 +699,7 @@ public class InvEquipos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonGuardarEquipo;
     private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNempleado;
