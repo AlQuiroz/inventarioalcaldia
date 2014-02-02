@@ -42,7 +42,6 @@ public class NuevoUsuario extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuarios = new javax.swing.JTable();
-        btnBack = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -68,14 +67,6 @@ public class NuevoUsuario extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaUsuarios);
 
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/Arrow-Back-4-icon.png"))); // NOI18N
-        btnBack.setText("Atrás");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/Letter-X-icon.png"))); // NOI18N
         btnEliminar.setText("Eliminar Usuario");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -90,18 +81,15 @@ public class NuevoUsuario extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnEliminar))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
-                    .addComponent(btnEliminar))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEliminar)
                 .addContainerGap())
         );
 
@@ -289,6 +277,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
 
     private void btnGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarActionPerformed
         llenarUsuarios();
+        this.setVisible(false);
         dialogoUsuarios.setModal(true);
         dialogoUsuarios.setLocation(500, 150);
         dialogoUsuarios.setSize(400, 400);
@@ -329,10 +318,6 @@ public class NuevoUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-         
-    }//GEN-LAST:event_btnBackActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -369,7 +354,6 @@ public class NuevoUsuario extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGestionar;
