@@ -110,8 +110,8 @@ public class Login extends javax.swing.JFrame {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         this.setVisible(false);
-        NuevoUsuario nu = new NuevoUsuario();
-        nu.setVisible(true);
+        NuevoUsuario nuevoUsuario = new NuevoUsuario();
+        nuevoUsuario.setVisible(true);
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void txtClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyPressed
