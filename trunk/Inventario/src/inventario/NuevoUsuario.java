@@ -5,6 +5,8 @@
 package inventario;
 
 import bd.Conexion;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,6 +29,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Crear Usuario");
         setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+        
     }
 
     /**
@@ -43,6 +46,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuarios = new javax.swing.JTable();
         btnEliminar = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -75,13 +79,23 @@ public class NuevoUsuario extends javax.swing.JFrame {
             }
         });
 
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Imagenes/Arrow-Back-4-icon.png"))); // NOI18N
+        btnBack.setText("Atrás");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEliminar))
         );
         jPanel2Layout.setVerticalGroup(
@@ -89,7 +103,9 @@ public class NuevoUsuario extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEliminar)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnBack))
                 .addContainerGap())
         );
 
@@ -282,7 +298,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
         dialogoUsuarios.setLocation(500, 150);
         dialogoUsuarios.setSize(400, 400);
         dialogoUsuarios.setTitle("Gestionar los Usuarios");
-        dialogoUsuarios.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+        dialogoUsuarios.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialogoUsuarios.setVisible(true);
 
     }//GEN-LAST:event_btnGestionarActionPerformed
@@ -317,6 +333,12 @@ public class NuevoUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Por favor seleccione un usuario a eliminar.");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        dialogoUsuarios.dispose();
+        NuevoUsuario nuevoUsuario = new NuevoUsuario();
+        nuevoUsuario.setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -354,6 +376,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGestionar;
@@ -399,4 +422,6 @@ public class NuevoUsuario extends javax.swing.JFrame {
         String columna[] = new String[]{"Nombre(s) y Apellidos", "Usuario", "Clave"};
         return columna;
     }
+
+    
 }
