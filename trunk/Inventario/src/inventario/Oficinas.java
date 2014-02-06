@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -22,6 +23,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class Oficinas extends javax.swing.JFrame {
@@ -37,7 +39,7 @@ public class Oficinas extends javax.swing.JFrame {
     
     public Oficinas() {
         initComponents();
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
         dialogoNomina.setLocation(450, 100);
         setResizable(false);
@@ -45,7 +47,6 @@ public class Oficinas extends javax.swing.JFrame {
         dialogoNomina.setSize(500, 500);
         llenarOficinas();
         eventoTabla();
-        setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -57,6 +58,7 @@ public class Oficinas extends javax.swing.JFrame {
         tablaNomina = new javax.swing.JTable();
         botonGenerarPDF = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        dialogoReporte = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         comboOficinas = new javax.swing.JComboBox();
         btnAtras = new javax.swing.JButton();
@@ -117,6 +119,8 @@ public class Oficinas extends javax.swing.JFrame {
                     .addComponent(botonGenerarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 63, Short.MAX_VALUE))
         );
+
+        dialogoReporte.getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Seleccion de oficina");
@@ -222,15 +226,21 @@ public class Oficinas extends javax.swing.JFrame {
             mapa.put("empleado", idempleado);
             JasperReport reporte = (JasperReport) JRLoader.loadObject(file);
             JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, mapa, Conexion.Conectarse());
-            JasperViewer visor = new JasperViewer(jasperPrint, false);
-            visor.addWindowListener(new WindowAdapter() {
+//            JasperViewer visor = new JasperViewer(jasperPrint, false);
+            JRViewer viewer = new JRViewer(jasperPrint);
+            
+            viewer.show();
+            dialogoReporte.add(viewer);
+            dialogoReporte.setSize(1200, 600);
+            dialogoReporte.setLocationRelativeTo(null);
+            dialogoReporte.setModal(true);
+            dialogoReporte.setVisible(true);
+            dialogoReporte.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e) {
                     botonGenerarPDF.setEnabled(true);
                 }
             });
-            visor.setVisible(true);
-            botonGenerarPDF.setEnabled(false);
         } catch (HeadlessException | JRException ex) {
             JOptionPane.showMessageDialog(rootPane, "Ha ocurrido una excepcion creando el reporte", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
@@ -282,6 +292,7 @@ public class Oficinas extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JComboBox comboOficinas;
     private javax.swing.JDialog dialogoNomina;
+    private javax.swing.JDialog dialogoReporte;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaNomina;
