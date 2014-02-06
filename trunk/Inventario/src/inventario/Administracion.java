@@ -111,6 +111,7 @@ public class Administracion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOficinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOficinasActionPerformed
+        this.setVisible(false);
         Oficinas ofi = new Oficinas();
         ofi.setVisible(true);
     }//GEN-LAST:event_btnOficinasActionPerformed
@@ -121,6 +122,8 @@ public class Administracion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
+        this.setVisible(false);
+        InvEquipos inv = new InvEquipos();
         new InvEquipos().setVisible(true);
     }//GEN-LAST:event_btnInventarioActionPerformed
 
