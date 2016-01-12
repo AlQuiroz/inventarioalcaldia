@@ -1,0 +1,1 @@
+Un proyecto simple de inventario con JDBC y Jasper
